@@ -5,23 +5,25 @@ import java.net.InetSocketAddress;
 public class WebServer 
 {
         private static final int port = 8080; //default port
+        HttpdConf configuration;
+        Mimetypes mimeTypes;
+        ServerSocket socket;
+       // Dictionary accessFiles
         
-        public void start(int port) 
+        public void start() 
         {
             //
         }
 
-        public static void main(String args[]) 
+        public static void main(String args[]) throws IOException
         {
-            try 
-            {
-
-                new WebServer().start(port);
-
-            } catch (Exception e) {
-
-                //error message
-
+            while(true) {
+                try
+                {
+                    //
+                } catch (Exception e) {
+                    //error log message
+                }
             }
         }
 }
