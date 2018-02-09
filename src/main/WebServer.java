@@ -1,22 +1,27 @@
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.InetSocketAddress;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
+public class WebServer 
+{
+        private static final int port = 8080; //default port
+        
+        public void start(int port) 
+        {
+            //
+        }
 
-public class WebServer {
-		static final int port = 8080; //default port
-		
-		public void start(int port) {
-    	try {
-	        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-	        server.setExecutor(null); //default executer
-	        server.start();
-    	} catch (IOException e) {
-    		
-    	}
-    }
+        public static void main(String args[]) 
+        {
+            try 
+            {
+
+                new WebServer().start(port);
+
+            } catch (Exception e) {
+
+                //error message
+
+            }
+        }
 }
