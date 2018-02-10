@@ -1,18 +1,20 @@
 public class MimeTypes extends ConfigurationReader{
-	//Dictionary types
-	public MimeTypes(String fileName)
-	{
 
-	}
+    private Map<String, String> types;
 
-	@Override
-	public void load()
-	{
+    public MimeTypes(String fileName)
+    {
+        types = new HashMap<String, String>();
+    }
 
-	}
+    @Override
+    public void load()
+    {
 
-	public String lookup (String extension)
-	{
+    }
 
-	}
+    public String lookup (String extension)
+    {
+
+    }
 }

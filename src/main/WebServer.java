@@ -8,7 +8,7 @@ public class WebServer
         //HttpdConf configuration;
         //MimeTypes mimeTypes;
         //ServerSocket socket;
-       // Dictionary accessFiles
+        //Dictionary accessFiles
         
         public void start() 
         {

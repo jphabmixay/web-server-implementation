@@ -1,14 +1,21 @@
 public class HttpdConf extends ConfigurationReader{
-	//Dictionary aliases
-	//Dictionary scriptAliases
-	public HttpdConf(String fileName)
-	{
 
-	}
+    private String serverRoot;
+    private String documentRoot;
+    private int listen;
+    private String logFile;
+    private Map<String, String> aliases;
+    private Map<String, String> scriptAliases;
 
-	@Override
-	public void load()
-	{
+    public HttpdConf(String fileName)
+    {
+        aliases = new HashMap<String, String>();
+        scriptAliases = new HashMap<String, String>();
+    }
 
-	}
-}
+    @Override
+    public void load()
+    {
+
+    }
+}   
