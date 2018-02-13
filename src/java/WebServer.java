@@ -5,16 +5,16 @@ import java.net.ServerSocket;
 
 public class WebServer 
 {
-        private static final int port = 8080; //default port
-        HttpdConf configuration = new HttpdConf("../conf/httpd.conf");
-        //MimeTypes mimeTypes;
-        //ServerSocket socket;
-        //Dictionary accessFiles
+        private static final int DEFAULT_PORT = 8080;
+        private HttpdConf configuration = new HttpdConf("../conf/httpd.conf");
+        private MimeTypes mimeTypes = new MimeTypes("../conf/mime.types");
+        //private ServerSocket socket;
+        //private Dictionary accessFiles
         
         public void start() throws IOException
         {
-            ServerSocket socket = new ServerSocket(port);
-            System.out.println("Java WebServer, Starting on port: " + port);
+            ServerSocket socket = new ServerSocket(DEFAULT_PORT);
+            System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
             while (true){
                 //listen for requests
             }
