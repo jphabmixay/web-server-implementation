@@ -4,6 +4,7 @@ import java.io.*;
 
 public class HttpdConf extends ConfigurationReader{
 
+    //Data fields to be loaded from configuration files
     private String serverRoot;
     private String documentRoot;
     private int listen;
@@ -20,6 +21,8 @@ public class HttpdConf extends ConfigurationReader{
     @Override
     public void load()
     {
-    	
+    	while (hasMoreLines()){
+            
+        }
     }
 }   

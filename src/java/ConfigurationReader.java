@@ -7,6 +7,7 @@ public abstract class ConfigurationReader{
     String line;
     FileReader fileReader;
     BufferedReader bufferedReader;
+    InputStream input;
     public ConfigurationReader(String fileName)
     {
         //Begin reading file
@@ -23,9 +24,7 @@ public abstract class ConfigurationReader{
         if (this.nextLine() != null){
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public String nextLine()
