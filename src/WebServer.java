@@ -1,11 +1,11 @@
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.InetSocketAddress;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
 public class WebServer 
 {
         private static final int port = 8080; //default port
-        //HttpdConf configuration;
+        HttpdConf configuration = new HttpdConf("httpd.conf");
         //MimeTypes mimeTypes;
         //ServerSocket socket;
         //Dictionary accessFiles
@@ -17,7 +17,7 @@ public class WebServer
 
         public static void main(String args[]) throws IOException
         {
-            while(true) {
+            while(true) { //listens for requests in a while loop
                 try
                 {
                     //

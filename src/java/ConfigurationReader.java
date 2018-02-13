@@ -1,7 +1,8 @@
-import java.io*;
-import java.lang.Object;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-public class ConfigurationReader{
+public abstract class ConfigurationReader{
 
     String line;
     FileReader fileReader;
@@ -12,10 +13,11 @@ public class ConfigurationReader{
         try{
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
-        }catch (Exception e){
-            //error message
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
+
     public boolean hasMoreLines()
     {
         if (this.nextLine() != null){
@@ -28,7 +30,13 @@ public class ConfigurationReader{
 
     public String nextLine()
     {
-        line = bufferedReader.readLine();
+        try{
+            line = bufferedReader.readLine();
+            return line;
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public abstract void load();

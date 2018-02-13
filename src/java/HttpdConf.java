@@ -1,3 +1,7 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
 public class HttpdConf extends ConfigurationReader{
 
     private String serverRoot;
@@ -7,8 +11,8 @@ public class HttpdConf extends ConfigurationReader{
     private Map<String, String> aliases;
     private Map<String, String> scriptAliases;
 
-    public HttpdConf(String fileName)
-    {
+    public HttpdConf(String fileName){
+        super(fileName);
         aliases = new HashMap<String, String>();
         scriptAliases = new HashMap<String, String>();
     }
@@ -16,6 +20,6 @@ public class HttpdConf extends ConfigurationReader{
     @Override
     public void load()
     {
-
+    	
     }
 }   
