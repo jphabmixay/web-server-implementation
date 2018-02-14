@@ -10,7 +10,7 @@ public class Request{
     String httpVersion;
     //Dictionary headers. Hashmap? List?
 
-    String str;
+    String line;
 
     public Request(String test){
 
@@ -18,7 +18,7 @@ public class Request{
 
     public Request(InputStream client) throws IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client));
-        str = bufferedReader.readLine();
+        line = bufferedReader.readLine();
         parse();
     }
 
@@ -31,9 +31,9 @@ public class Request{
 
         Example:    GET /test.html HTTP/1.1*/
 
-        String[] parsed = str.split(" ");
-        verb        = parsed[0]; //To Do: 400 Error if fail.
-        uri         = parsed[1];
-        httpVersion = parsed[2];
+        String[] tokenizeLine = line.split("\\s+");
+        verb        = tokenizeLine[0]; //To Do: 400 Error if fail.
+        uri         = tokenizeLine[1];
+        httpVersion = tokenizeLine[2];
     }
 }
