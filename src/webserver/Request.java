@@ -1,3 +1,5 @@
+package webserver;
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -24,7 +26,7 @@ public class Request{
 
         /*Split the string into URI, verb, and httpVersion.
 
-        General Form of HTTP Request : HTTP_METHOD  IDENTIFIER  HTTP_VERSION  HTTP_HEADERS
+        General Form of HTTP webserver.Request : HTTP_METHOD  IDENTIFIER  HTTP_VERSION  HTTP_HEADERS
         HTTP_METHOD = verb, IDENTIFIER = URI... 
 
         Example:    GET /test.html HTTP/1.1*/

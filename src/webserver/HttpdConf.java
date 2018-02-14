@@ -1,6 +1,7 @@
+package webserver;
+
 import java.util.*;
 import java.lang.*;
-import java.io.*;
 
 public class HttpdConf extends ConfigurationReader{
 
