@@ -1,11 +1,11 @@
-package server.configuration;
+package conf;
 
 import java.util.HashMap;
 import java.util.Base64;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
-
 import java.io.IOException;
+import webserver.ConfigurationReader;
 
 public class Htpassword extends ConfigurationReader {
   private HashMap<String, String> passwords;
@@ -16,6 +16,11 @@ public class Htpassword extends ConfigurationReader {
 
     this.passwords = new HashMap<String, String>();
     this.load();
+  }
+
+  @Override
+  public void load() {
+
   }
 
   protected void parseLine( String line ) {
@@ -38,6 +43,7 @@ public class Htpassword extends ConfigurationReader {
     String[] tokens = credentials.split( ":" );
 
     // TODO: implement this
+    return false;
   }
 
   private boolean verifyPassword( String username, String password ) {
@@ -45,6 +51,7 @@ public class Htpassword extends ConfigurationReader {
     // in the password file (keyed by username)
     // TODO: implement this - note that the encryption step is provided as a
     // method, below
+    return false;
   }
 
   private String encryptClearPassword( String password ) {
