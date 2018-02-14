@@ -1,3 +1,5 @@
+package webserver;
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
@@ -9,27 +11,45 @@ public class MimeTypes extends ConfigurationReader{
     public MimeTypes(String fileName)
     {
         super(fileName);
-        types = new HashMap<String, String>();
+        types = new HashMap<>();
     }
 
     @Override
     public void load()
     {
+        //int extensionCounter = 0; // Debug statement
+
         while(hasMoreLines()) {
             String line = getLine();
 
-            String[] tokenizedLine = line.split("\\s");
+            String[] tokenizeLine = line.split("\\s+");
 
-            System.out.println("First token of each line: " + tokenizedLine[0]);
+            if(tokenizeLine.length <= 0) {
+                // Ignores empty lines
+            } else if(tokenizeLine[0].contains("#")) {
+                // Ignores lines that start with #
+            } else {
+                for(int index = 1; index < tokenizeLine.length; index++) {
+                    types.put(tokenizeLine[index], tokenizeLine[0]);
 
-            if(tokenizedLine.length <= 0 || tokenizedLine[0] == "#") {
-                ; // Ignores empty lines and lines that start with #
+                    //extensionCounter++; // Debug statement
+                }
             }
         }
+
+        /* Debug statement
+        System.out.println("Number of file extensions: " + extensionCounter);
+        System.out.println("Number of key/value pairs: " + types.size() );
+        System.out.println("Number of unique values: " + types.values().stream().distinct().count());
+        //*/
     }
 
     public String lookup (String extension)
     {
-        return null;
+        String mimeType = "text/plain"; // default mime type?
+        if(types.containsKey(extension)) {
+            mimeType = types.get(extension);
+        }
+        return mimeType;
     }
 }
