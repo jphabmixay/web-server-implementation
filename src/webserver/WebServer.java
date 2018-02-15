@@ -23,9 +23,20 @@ public class WebServer
             while (true){
                 Socket client = socket.accept(); //accept() receives a connection and returns a Socket object
                 System.out.println("Request Received!");
+                //sendGetRequest(client); // my attempt at sending manual get request
                 Request request = new Request(client.getInputStream()); //To do: pass as an actual http request to Request() constructor
+                Resource resource = new Resource(request.getUri(), configuration);
             }
         }
+
+    /* Attempt at manual GET request
+    public static void sendGetRequest( Socket socket) throws IOException {
+        PrintWriter out = new PrintWriter( socket.getOutputStream(), true );
+        out.println( "GET / HTTP/1.1" );
+        out.println( "Host: localhost:8080" );
+        out.println( "" );
+    }
+    //*/
 
         public static void main(String args[]) throws IOException
         {
