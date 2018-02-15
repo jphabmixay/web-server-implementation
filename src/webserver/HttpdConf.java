@@ -10,6 +10,8 @@ public class HttpdConf extends ConfigurationReader{
     private String documentRoot;
     private int listen;
     private String logFile;
+    private String accessFileName = ".htaccess";  // default value is .htaccess
+    private String directoryIndex = "index.html"; // default value i think is index.html
     private Map<String, String> aliases;
     private Map<String, String> scriptAliases;
 
@@ -42,10 +44,52 @@ public class HttpdConf extends ConfigurationReader{
                                                 break;
                         case "Alias":           aliases.put(tokenizeLine[1], tokenizeLine[2]);
                                                 break;
+                        case "AccessFileName":  accessFileName = tokenizeLine[1];
+                                                break;
+                        case "DirectoryIndex ": directoryIndex = tokenizeLine[1];
                         default: break;
                     }
                 }
             }
         }
     }
+
+    public boolean containsAliasKey(String key) {
+        boolean flag = false;
+        if(aliases.containsKey(key)) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    public String getAliasValue(String key) {
+        String aliasValue = aliases.get(key);
+        return aliasValue;
+    }
+
+    public boolean containsScriptAliasKey(String key) {
+        boolean flag = false;
+        if(scriptAliases.containsKey(key)) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    public String getScriptAliasValue(String key) {
+        String scriptAliasValue = scriptAliases.get(key);
+        return scriptAliasValue;
+    }
+
+    public String getServerRoot() { return serverRoot; }
+
+    public String getDocumentRoot() { return documentRoot; }
+
+    public String getLogFile() { return logFile; }
+
+    public String getAccessFileName() { return accessFileName; }
+
+    public String getDirectoryIndex() { return directoryIndex; }
+
+    public int getListen() { return listen; }
+
 }   
