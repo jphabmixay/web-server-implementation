@@ -24,11 +24,7 @@ public class MimeTypes extends ConfigurationReader{
 
             String[] tokenizeLine = line.split("\\s+");
 
-            if(tokenizeLine.length <= 0) {
-                // Ignores empty lines
-            } else if(tokenizeLine[0].contains("#")) {
-                // Ignores lines that start with #
-            } else {
+            if(tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) { //Ignores empty lines & lines starting with #
                 for(int index = 1; index < tokenizeLine.length; index++) {
                     types.put(tokenizeLine[index], tokenizeLine[0]);
 
