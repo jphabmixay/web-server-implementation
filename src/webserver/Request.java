@@ -8,32 +8,68 @@ public class Request{
     String verb;
     String uri;
     String httpVersion;
-    //Dictionary headers. Hashmap? List?
+    private Map<String, String> headers;
 
     String line;
+    FileReader fileReader;
+    BufferedReader bufferedReader;
 
     public Request(String test){
 
     }
 
     public Request(InputStream client) throws IOException{
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client));
+        headers = new HashMap<String, String>();
+        bufferedReader = new BufferedReader(new InputStreamReader(client));
         line = bufferedReader.readLine();
         parse();
     }
 
-    public void parse(){
-
-        /*Split the string into URI, verb, and httpVersion.
-
-        General Form of HTTP webserver.Request : HTTP_METHOD  IDENTIFIER  HTTP_VERSION  HTTP_HEADERS
-        HTTP_METHOD = verb, IDENTIFIER = URI... 
-
-        Example:    GET /test.html HTTP/1.1*/
-
+    public void parse() throws IOException{
         String[] tokenizeLine = line.split("\\s+");
-        verb        = tokenizeLine[0]; //To Do: 400 Error if fail.
+
+        verb        = tokenizeLine[0];
         uri         = tokenizeLine[1];
         httpVersion = tokenizeLine[2];
+
+        //Parse Optional Headers - (Example Syntax -->  Accept: image/gif, image/jpeg)
+        while((line = bufferedReader.readLine()) != null){
+            tokenizeLine = line.split(": ");
+            headers.put(tokenizeLine[0], tokenizeLine[1]);
+        }
+
+        //debug statements:
+        if (checkVerb() && checkVersion()){
+            //testing
+            System.out.print("Syntax Correct, displaying variables: ");
+            System.out.print("Verb : " + verb);
+            System.out.print("URI : " + uri);
+            System.out.print("httpVersion : " + httpVersion);
+            //Syntax is correct. Pass to Resource
+        }
+        else {
+            //Response Code 400
+            System.out.print("Syntax incorrect.");
+        }
+    }
+
+    public boolean checkVerb(){
+        switch (verb) {
+            case "GET"  :
+            case "HEAD" :
+            case "POST" :
+            case "PUT"  :
+            case "DELETE" :
+                return true;
+            default :
+                return false;
+        }
+    }
+
+    public boolean checkVersion(){
+        if (httpVersion.equals("HTTP/1.0") || httpVersion.equals("HTTP/1.1")){
+            return true;
+        }
+        return false;
     }
 }

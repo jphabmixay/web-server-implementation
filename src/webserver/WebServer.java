@@ -3,8 +3,9 @@ package webserver;
 import java.lang.*;
 import java.io.*;
 import java.net.ServerSocket;
+import java.net.Socket;
 
-public class WebServer 
+public class WebServer
 {
         private static final int DEFAULT_PORT = 8080;
         private HttpdConf configuration = new HttpdConf("src/conf/httpd.conf");
@@ -18,9 +19,11 @@ public class WebServer
             //configuration.load(); //Debug statement
 
             socket = new ServerSocket(DEFAULT_PORT);
-            System.out.println("Java webserver.WebServer, Starting on port: " + DEFAULT_PORT);
+            System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
             while (true){
-                //listen for requests
+                Socket client = socket.accept(); //accept() receives a connection and returns a Socket object
+                System.out.println("Request Received!");
+                Request request = new Request(client.getInputStream()); //To do: pass as an actual http request to Request() constructor
             }
         }
 
