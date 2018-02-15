@@ -53,6 +53,22 @@ public class Request{
         }
     }
 
+    public String getVerb() {
+        return verb;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public String getHttpVersion() {
+        return httpVersion;
+    }
+
+    public String getHeaders(String key) {
+        return headers.get(key);
+    }
+
     public boolean checkVerb(){
         switch (verb) {
             case "GET"  :
