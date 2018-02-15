@@ -15,8 +15,8 @@ public class HttpdConf extends ConfigurationReader{
 
     public HttpdConf(String fileName){
         super(fileName);
-        aliases = new HashMap<String, String>();
         scriptAliases = new HashMap<String, String>();
+        aliases = new HashMap<String, String>();
     }
 
     @Override
@@ -30,16 +30,22 @@ public class HttpdConf extends ConfigurationReader{
                 for (int index = 1; index < tokenizeLine.length; index ++) {
 
                     switch (tokenizeLine[0]) {
-                        case "ServerRoot": serverRoot = tokenizeLine[1];
-                                            break;
-                        //off to class. will finish rest of cases after.
+                        case "ServerRoot":      serverRoot = tokenizeLine[1];
+                                                break;
+                        case "DocumentRoot":    documentRoot = tokenizeLine[1];
+                                                break;
+                        case "Listen" :         listen = Integer.parseInt(tokenizeLine[1]);
+                                                break;
+                        case "LogFile" :        logFile = tokenizeLine[1];
+                                                break;
+                        case "ScriptAlias":     scriptAliases.put(tokenizeLine[1], tokenizeLine[2]);
+                                                break;
+                        case "Alias":           aliases.put(tokenizeLine[1], tokenizeLine[2]);
+                                                break;
                         default: break;
                     }
                 }
             }
         }
-
-        //debug statement to test member variables:
-        System.out.println("serverRoot :" + serverRoot);
     }
 }   

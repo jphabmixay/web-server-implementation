@@ -14,7 +14,7 @@ public class WebServer
         
         public void start() throws IOException
         {
-            mimeTypes.load(); // Debug statement
+            //mimeTypes.load(); // Debug statement
             //configuration.load(); //Debug statement
 
             socket = new ServerSocket(DEFAULT_PORT);

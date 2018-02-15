@@ -36,7 +36,7 @@ public class MimeTypes extends ConfigurationReader{
                 }
             }
         }
-         System.out.println("=====================================");
+        System.out.println("=====================================");
 
         ///* Debug statement
         System.out.println("Number of file extensions: " + extensionCounter);
