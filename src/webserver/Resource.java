@@ -35,7 +35,7 @@ public class Resource {
         File file = new File(modifiedUri);
         if(!file.isFile()) {
             //no, path/uri is a directory, so append directory index
-            modifiedUri.concat(config.getDirectoryIndex());
+            modifiedUri = modifiedUri.concat(config.getDirectoryIndex());
         }
 
         absolutePath = modifiedUri;
