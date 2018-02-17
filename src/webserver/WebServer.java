@@ -27,15 +27,6 @@ public class WebServer
             }
         }
 
-    /* Attempt at manual GET request
-    public static void sendGetRequest( Socket socket) throws IOException {
-        PrintWriter out = new PrintWriter( socket.getOutputStream(), true );
-        out.println( "GET / HTTP/1.1" );
-        out.println( "Host: localhost:8080" );
-        out.println( "" );
-    }
-    //*/
-
         public static void main(String args[]) throws IOException
         {
             try {
