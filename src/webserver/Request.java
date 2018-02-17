@@ -26,25 +26,27 @@ public class Request{
     }
 
     public void parse() throws IOException{
+        System.out.println("Parsing " + line + "...");
         String[] tokenizeLine = line.split("\\s+");
 
         verb        = tokenizeLine[0];
         uri         = tokenizeLine[1];
         httpVersion = tokenizeLine[2];
 
-        //Parse Optional Headers - (Example Syntax -->  Accept: image/gif, image/jpeg)
-        while((line = bufferedReader.readLine()) != null){
+        /* TO DO : PARSE OPTIONAL HEADERS   (Example Syntax -->  Accept: image/gif, image/jpeg)
+        line = bufferedReader.readLine();
+        while(line != null){
             tokenizeLine = line.split(": ");
             headers.put(tokenizeLine[0], tokenizeLine[1]);
-        }
+            line = bufferedReader.readLine();
+        }*/
 
         //debug statements:
         if (checkVerb() && checkVersion()){
-            //testing
-            System.out.print("Syntax Correct, displaying variables: ");
-            System.out.print("Verb : " + verb);
-            System.out.print("URI : " + uri);
-            System.out.print("httpVersion : " + httpVersion);
+            System.out.println("Syntax Correct, displaying variables: ");
+            System.out.println("Verb : " + verb);
+            System.out.println("URI : " + uri);
+            System.out.println("httpVersion : " + httpVersion);
             //Syntax is correct. Pass to Resource
         }
         else {
