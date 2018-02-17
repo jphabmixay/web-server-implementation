@@ -10,25 +10,25 @@ public class Resource {
     private boolean isProtected;
 
     public Resource(String uri, HttpdConf config) {
+        System.out.println("Creating resource file with URI: " + uri);
         String modifiedUri = uri; // uri is unmodified if not aliased or script aliased
+        System.out.println("modifiedUri = " + modifiedUri);
 
         //uri aliased?
         if(config.containsAliasKey(uri)) {
-            // yes, uri is aliased, so modify the uri
+            System.out.println("modifiedUri = " + modifiedUri);
             modifiedUri = config.getAliasValue(uri);
-        } else {
-            //uri is script aliased?
-            if(config.containsScriptAliasKey(uri)) {
-                //yes, uri is script aliased, so modify uri
+        }
+        //uri script-aliased?
+        else if(config.containsScriptAliasKey(uri)) {
                 modifiedUri = config.getScriptAliasValue(uri);
                 isScript = true;
-            }
         }
-
-        //check if uri is unmodified
-        if(modifiedUri == uri) {
-            //yes, uri is unmodified, so Resolve path (DOC_ROOT + URI)
+        //Neither alias nor script-aliased. Pass unmodified URI
+        else {
+            System.out.println("modifiedUri is not aliased or script aliased. Unmodified URI");
             modifiedUri = config.getDocumentRoot().concat(uri);
+            System.out.println("modifiedUri = " + modifiedUri);
         }
 
         //check if the path/uri is a file
@@ -37,8 +37,9 @@ public class Resource {
             //no, path/uri is a directory, so append directory index
             modifiedUri = modifiedUri.concat(config.getDirectoryIndex());
         }
-
+        System.out.println("modifiedUri = " + modifiedUri);
         absolutePath = modifiedUri;
+        System.out.println("absolutePath = " + absolutePath);
 
     }
 

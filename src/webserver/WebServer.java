@@ -15,16 +15,14 @@ public class WebServer
         
         public void start() throws IOException
         {
-            //mimeTypes.load(); // Debug statement
+            //mimeTypes.load(); // Debug statemenst
             //configuration.load(); //Debug statement
 
             socket = new ServerSocket(DEFAULT_PORT);
             System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
             while (true){
-                Socket client = socket.accept(); //accept() receives a connection and returns a Socket object
-                System.out.println("Request Received!");
-                //sendGetRequest(client); // my attempt at sending manual get request
-                Request request = new Request(client.getInputStream()); //To do: pass as an actual http request to Request() constructor
+                Socket client = socket.accept();
+                Request request = new Request(client.getInputStream());
                 Resource resource = new Resource(request.getUri(), configuration);
             }
         }
