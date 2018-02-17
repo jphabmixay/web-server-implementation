@@ -12,6 +12,7 @@ public class MimeTypes extends ConfigurationReader{
     {
         super(fileName);
         types = new HashMap<>();
+        load();
     }
 
     @Override

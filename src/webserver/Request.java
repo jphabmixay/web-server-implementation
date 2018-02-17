@@ -23,23 +23,6 @@ public class Request{
         bufferedReader = new BufferedReader(new InputStreamReader(client));
         line = bufferedReader.readLine();
         parse();
-    }
-
-    public void parse() throws IOException{
-        System.out.println("Parsing " + line + "...");
-        String[] tokenizeLine = line.split("\\s+");
-
-        verb        = tokenizeLine[0];
-        uri         = tokenizeLine[1];
-        httpVersion = tokenizeLine[2];
-
-        /* TO DO : PARSE OPTIONAL HEADERS   (Example Syntax -->  Accept: image/gif, image/jpeg)
-        line = bufferedReader.readLine();
-        while(line != null){
-            tokenizeLine = line.split(": ");
-            headers.put(tokenizeLine[0], tokenizeLine[1]);
-            line = bufferedReader.readLine();
-        }*/
 
         //debug statements:
         if (checkVerb() && checkVersion()){
@@ -53,6 +36,24 @@ public class Request{
             //Response Code 400
             System.out.print("Syntax incorrect.");
         }
+    }
+
+    public void parse() throws IOException{
+        System.out.println("Parsing " + line + "...");
+        String[] tokenizeLine = line.split("\\s+");
+
+        verb        = tokenizeLine[0];
+        uri         = tokenizeLine[1];
+        httpVersion = tokenizeLine[2];
+
+        /*TO DO : PARSE OPTIONAL HEADERS   (Example Syntax -->  Accept: image/gif, image/jpeg)
+        line = bufferedReader.readLine();
+        while(line != null){
+            tokenizeLine = line.split(": ");
+            headers.put(tokenizeLine[0], tokenizeLine[1]);
+            line = bufferedReader.readLine();
+        }*/
+        bufferedReader.close();
     }
 
     public String getVerb() {

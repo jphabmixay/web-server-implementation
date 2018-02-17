@@ -11,7 +11,7 @@ public class HttpdConf extends ConfigurationReader{
     private int listen;
     private String logFile;
     private String accessFileName = ".htaccess";  // default value is .htaccess
-    private String directoryIndex = "index.html"; // default value i think is index.html
+    private String directoryIndex = "/Users/jrob/workspace/server/public_html/index.html"; // default value i think is index.html
     private Map<String, String> aliases;
     private Map<String, String> scriptAliases;
 
@@ -19,6 +19,7 @@ public class HttpdConf extends ConfigurationReader{
         super(fileName);
         scriptAliases = new HashMap<String, String>();
         aliases = new HashMap<String, String>();
+        load();
     }
 
     @Override
@@ -28,7 +29,8 @@ public class HttpdConf extends ConfigurationReader{
             String line = getLine();
             String[] tokenizeLine = line.split("\\s+");
 
-            if (tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) { //ignores empty space and comments
+            if (tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) {
+                tokenizeLine[1] = tokenizeLine[1].replace("\"", "");
                 for (int index = 1; index < tokenizeLine.length; index ++) {
 
                     switch (tokenizeLine[0]) {

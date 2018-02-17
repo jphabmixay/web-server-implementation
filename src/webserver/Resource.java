@@ -34,10 +34,10 @@ public class Resource {
         //check if the path/uri is a file
         File file = new File(modifiedUri);
         if(!file.isFile()) {
+            System.out.println(modifiedUri + " does not exist. Appending index.");
             //no, path/uri is a directory, so append directory index
-            modifiedUri = modifiedUri.concat(config.getDirectoryIndex());
+            modifiedUri = config.getDirectoryIndex();
         }
-        System.out.println("modifiedUri = " + modifiedUri);
         absolutePath = modifiedUri;
         System.out.println("absolutePath = " + absolutePath);
 

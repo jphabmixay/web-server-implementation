@@ -15,9 +15,6 @@ public class WebServer
         
         public void start() throws IOException
         {
-            //mimeTypes.load(); // Debug statemenst
-            //configuration.load(); //Debug statement
-
             socket = new ServerSocket(DEFAULT_PORT);
             System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
             while (true){
