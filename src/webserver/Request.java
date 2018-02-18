@@ -24,17 +24,8 @@ public class Request{
         line = bufferedReader.readLine();
         parse();
 
-        //debug statements:
-        if (checkVerb() && checkVersion()){
-            System.out.println("Syntax Correct, displaying variables: ");
-            System.out.println("Verb : " + verb);
-            System.out.println("URI : " + uri);
-            System.out.println("httpVersion : " + httpVersion);
-            //Syntax is correct. Pass to Resource
-        }
-        else {
-            //Response Code 400
-            System.out.print("Syntax incorrect.");
+        if (!checkVerb() || !checkVersion()){
+            verb = "BAD REQUEST";
         }
     }
 
@@ -46,31 +37,23 @@ public class Request{
         uri         = tokenizeLine[1];
         httpVersion = tokenizeLine[2];
 
-        /*TO DO : PARSE OPTIONAL HEADERS   (Example Syntax -->  Accept: image/gif, image/jpeg)
-        line = bufferedReader.readLine();
+        //TO DO : PARSE OPTIONAL HEADERS   (Example Syntax -->  Accept: image/gif, image/jpeg)
+        /*line = bufferedReader.readLine();
         while(line != null){
             tokenizeLine = line.split(": ");
             headers.put(tokenizeLine[0], tokenizeLine[1]);
             line = bufferedReader.readLine();
-        }*/
-        bufferedReader.close();
+        }
+        bufferedReader.close();*/
     }
 
-    public String getVerb() {
-        return verb;
-    }
+    public String getVerb() { return verb; }
 
-    public String getUri() {
-        return uri;
-    }
+    public String getUri() { return uri; }
 
-    public String getHttpVersion() {
-        return httpVersion;
-    }
+    public String getHttpVersion() { return httpVersion; }
 
-    public String getHeaders(String key) {
-        return headers.get(key);
-    }
+    public String getHeaders(String key) { return headers.get(key); }
 
     public boolean checkVerb(){
         switch (verb) {
@@ -86,9 +69,7 @@ public class Request{
     }
 
     public boolean checkVersion(){
-        if (httpVersion.equals("HTTP/1.0") || httpVersion.equals("HTTP/1.1")){
-            return true;
-        }
+        if (httpVersion.equals("HTTP/1.0") || httpVersion.equals("HTTP/1.1")){ return true; }
         return false;
     }
 }

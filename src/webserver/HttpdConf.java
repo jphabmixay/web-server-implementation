@@ -11,7 +11,7 @@ public class HttpdConf extends ConfigurationReader{
     private int listen;
     private String logFile;
     private String accessFileName = ".htaccess";  // default value is .htaccess
-    private String directoryIndex = "/Users/jrob/workspace/server/public_html/index.html"; // default value i think is index.html
+    private String directoryIndex = "src/sample_site/public_html/index.html"; // default value i think is index.html
     private Map<String, String> aliases;
     private Map<String, String> scriptAliases;
 

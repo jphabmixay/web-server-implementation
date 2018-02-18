@@ -19,8 +19,11 @@ public class WebServer
             System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
             while (true){
                 Socket client = socket.accept();
-                Request request = new Request(client.getInputStream());
-                Resource resource = new Resource(request.getUri(), configuration);
+                Request request     = new Request(client.getInputStream());
+                Resource resource   = new Resource(request.getUri(), configuration);
+                Response response   = new Response(request, resource);
+                response.send(client.getOutputStream());
+                client.close();
             }
         }
 
