@@ -32,7 +32,7 @@ public class Resource {
         File file = new File(modifiedUri);
         if(!file.isFile()) {
             System.out.println(modifiedUri + " does not exist. Appending index.");
-            modifiedUri = config.getDirectoryIndex();
+            modifiedUri = config.getDocumentRoot().concat(config.getDirectoryIndex());
         }
 
         absolutePath = modifiedUri;
