@@ -1,7 +1,5 @@
 package webserver;
 
-import conf.Htpassword;
-
 import java.io.IOException;
 
 public class Htaccess extends ConfigurationReader {
@@ -38,6 +36,12 @@ public class Htaccess extends ConfigurationReader {
             }
         }
     }
+
+    public String getAuthType() { return authType; }
+
+    public String getAuthName() { return authName; }
+
+    public String getRequire() { return require; }
 
     // TODO: implement this, maybe similar to isAuthorized() inside Htpassword.java
     public boolean isAuthorized(String username, String password) {

@@ -20,7 +20,9 @@ public class Htpassword extends ConfigurationReader {
 
   @Override
   public void load() {
-
+    while(hasMoreLines()) {
+      parseLine(getLine());
+    }
   }
 
   protected void parseLine( String line ) {
@@ -43,7 +45,7 @@ public class Htpassword extends ConfigurationReader {
     String[] tokens = credentials.split( ":" );
 
     // TODO: implement this
-    return false;
+    return verifyPassword(tokens[0], tokens[1]);
   }
 
   private boolean verifyPassword( String username, String password ) {
@@ -51,7 +53,13 @@ public class Htpassword extends ConfigurationReader {
     // in the password file (keyed by username)
     // TODO: implement this - note that the encryption step is provided as a
     // method, below
-    return false;
+
+    boolean flag = false;
+    String encryptedPassword = encryptClearPassword(password);
+    if(passwords.get(username) == encryptedPassword) {
+      flag = true;
+    }
+    return flag;
   }
 
   private String encryptClearPassword( String password ) {
