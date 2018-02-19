@@ -37,6 +37,25 @@ public class Resource {
 
         absolutePath = modifiedUri;
         System.out.println("absolutePath = " + absolutePath);
+
+
+        //Does htaccess exists?
+        String pathToHtaccess = config.getDocumentRoot().concat(config.getAccessFileName());
+        System.out.println("pathToHtaccess: " + pathToHtaccess);
+        File htaccessFile = new File(pathToHtaccess);
+        //Check if .htaccess exist
+        if(htaccessFile.exists()) {
+            //yes, file exists so lets create instance of Htaccess.java?
+            System.out.println(".htaccess file exists, create instance of Htaccess.java");
+            Htaccess htaccessObject = new Htaccess(pathToHtaccess);
+
+            //check if Authentication header exists?
+
+        } else {
+            //htaccess file doesnt exists so, its not protected?
+            System.out.println(".htaccess file doesn't exist, so request is not protected?");
+            isProtected = false;
+        }
     }
 
     public String absolutePath() {
