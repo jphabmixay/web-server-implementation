@@ -1,0 +1,4 @@
+AuthUserFile "src/sample_site/public_html/.htpasswd"
+AuthType Basic
+AuthName "I Challenge You"
+Require valid-user
