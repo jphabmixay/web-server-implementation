@@ -1,4 +1,4 @@
-package conf;
+package webserver;
 
 import java.util.HashMap;
 import java.util.Base64;
