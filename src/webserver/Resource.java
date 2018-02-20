@@ -32,18 +32,12 @@ public class Resource {
 
         absolutePath = modifiedUri;
 
-        //Does htaccess exists?
         String pathToHtaccess = config.getDocumentRoot().concat(config.getAccessFileName());
         File htaccessFile = new File(pathToHtaccess);
-        //Check if .htaccess exist
         if(htaccessFile.exists()) {
-            //yes, file exists so lets create instance of Htaccess.java?
             Htaccess htaccessObject = new Htaccess(pathToHtaccess);
 
-            //check if Authentication header exists?
-
         } else {
-            //htaccess file doesnt exists so, its not protected?
             isProtected = false;
         }
     }

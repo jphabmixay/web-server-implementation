@@ -5,7 +5,6 @@ import java.lang.*;
 
 public class HttpdConf extends ConfigurationReader{
 
-    //Data fields to be loaded from configuration files
     private String serverRoot;
     private String documentRoot;
     private int listen;

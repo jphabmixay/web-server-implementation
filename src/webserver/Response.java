@@ -20,9 +20,6 @@ public class Response {
         this.resource = resource;
         this.file = new File(resource.absolutePath());
         this.headers = new ArrayList<String>();
-        headers.add("Date: " + new Date());
-        headers.add("Server: web-server-team-c");
-
         if(file.isFile()) {
             doVerb(request);
         }
@@ -51,33 +48,42 @@ public class Response {
         switch(request.getVerb()) {
             case "HEAD":
                 code = 200;
-                headers.add(responseCode(code));
+                addHeaders();
                 break;
             case "GET":
                 code = 200;
-                headers.add(getContentType(resource.absolutePath()));
-                //body = getBytes(file); //Only returns raw value
-                headers.add(responseCode(code));
+                //body = getBytes(file); //Not correctly displaying web page.
+                addHeaders();
                 break;
             case "PUT":
                 code = 201;
-                headers.add(responseCode(code));
+                addHeaders();
                 break;
             case "DELETE":
                 code = 204;
-                headers.add(responseCode(code));
+                addHeaders();
                 break;
             case "POST":
                 code = 304;
-                headers.add(responseCode(code));
+                addHeaders();
                 break;
             case "BAD REQUEST":
                 code = 400;
-                headers.add(responseCode(code));
+                addHeaders();
             default:
                 break;
         }
     }
+    public void addHeaders() {
+        headers.add(responseCode(code));
+        headers.add("Date: " + new Date());
+        headers.add("Server: web-server-team-c");
+        headers.add("Last Modified: " + file.lastModified());
+        headers.add("Content-length: " + file.length());
+        headers.add(getContentType(resource.absolutePath()));
+
+    }
+
     public byte[] getBytes(File file) throws IOException{
         Path path = Paths.get(resource.absolutePath());
         byte[] bytes = Files.readAllBytes(path);

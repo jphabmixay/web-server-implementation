@@ -40,15 +40,12 @@ public class Logger {
     private void appendMessage() {
         BufferedWriter writer = null;
         try {
-            // Prints out the full path where the file will be written to...
-            //System.out.println(file.getCanonicalPath());
             writer = new BufferedWriter(new FileWriter(file, true));
             writer.write(message);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                // Close the writer regardless of what happens...
                 writer.close();
             } catch (Exception e) {
                 e.printStackTrace();

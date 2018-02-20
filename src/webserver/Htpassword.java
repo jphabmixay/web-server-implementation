@@ -34,14 +34,11 @@ public class Htpassword extends ConfigurationReader {
   }
 
   public boolean isAuthorized( String authInfo ) {
-    // authInfo is provided in the header received from the client
-    // as a Base64 encoded string.
     String credentials = new String(
       Base64.getDecoder().decode( authInfo ),
       Charset.forName( "UTF-8" )
     );
 
-    // The string is the key:value pair username:password
     String[] tokens = credentials.split( ":" );
 
     // TODO: implement this
@@ -63,8 +60,6 @@ public class Htpassword extends ConfigurationReader {
   }
 
   private String encryptClearPassword( String password ) {
-    // Encrypt the cleartext password (that was decoded from the Base64 String
-    // provided by the client) using the SHA-1 encryption algorithm
     try {
       MessageDigest mDigest = MessageDigest.getInstance( "SHA-1" );
       byte[] result = mDigest.digest( password.getBytes() );
