@@ -37,7 +37,7 @@ public class Logger {
         appendMessage();
     }
 
-    public void appendMessage() {
+    private void appendMessage() {
         BufferedWriter writer = null;
         try {
             // Prints out the full path where the file will be written to...
