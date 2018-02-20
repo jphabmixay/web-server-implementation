@@ -12,7 +12,6 @@ public abstract class ConfigurationReader{
     InputStream input;
     public ConfigurationReader(String fileName)
     {
-        //Begin reading file
         try{
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);

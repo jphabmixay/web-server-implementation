@@ -12,6 +12,7 @@ public class Response {
 
     public Resource resource;
     public File file;
+    int code;
     ArrayList<String> headers;
     byte[] body;
 
@@ -26,15 +27,14 @@ public class Response {
             doVerb(request);
         }
         else {
-            headers.add(responseCode(404));
+            code = 404;
+            headers.add(responseCode(code));
         }
     }
 
     public void send(OutputStream out) throws IOException{
-        System.out.println("Sending...");
         DataOutputStream output = new DataOutputStream(out);
         for (String header : headers) {
-            System.out.println(header);
             output.writeBytes(header + "\r\n");
         }
         if (body != null) {
@@ -50,24 +50,30 @@ public class Response {
     public void doVerb(Request request) throws IOException{
         switch(request.getVerb()) {
             case "HEAD":
-                headers.add(responseCode(200));
+                code = 200;
+                headers.add(responseCode(code));
                 break;
             case "GET":
+                code = 200;
                 headers.add(getContentType(resource.absolutePath()));
                 //body = getBytes(file); //Only returns raw value
-                headers.add(responseCode(200));
+                headers.add(responseCode(code));
                 break;
             case "PUT":
-                headers.add(responseCode(201));
+                code = 201;
+                headers.add(responseCode(code));
                 break;
             case "DELETE":
-                headers.add(responseCode(204));
+                code = 204;
+                headers.add(responseCode(code));
                 break;
             case "POST":
-                headers.add(responseCode(304));
+                code = 304;
+                headers.add(responseCode(code));
                 break;
             case "BAD REQUEST":
-                headers.add(responseCode(400));
+                code = 400;
+                headers.add(responseCode(code));
             default:
                 break;
         }

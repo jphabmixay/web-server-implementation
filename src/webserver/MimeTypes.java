@@ -22,7 +22,7 @@ public class MimeTypes extends ConfigurationReader{
             String line = getLine();
             String[] tokenizeLine = line.split("\\s+");
 
-            if(tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) { //Ignores empty lines & lines starting with #
+            if(tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) {
                 for(int index = 1; index < tokenizeLine.length; index++) {
                     types.put(tokenizeLine[index], tokenizeLine[0]);
                 }
@@ -32,7 +32,7 @@ public class MimeTypes extends ConfigurationReader{
 
     public String lookup (String extension)
     {
-        String mimeType = "text/plain"; // default mime type?
+        String mimeType = "text/plain";
         if(types.containsKey(extension)) {
             mimeType = types.get(extension);
         }

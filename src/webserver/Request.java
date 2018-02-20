@@ -5,9 +5,9 @@ import java.lang.*;
 import java.io.*;
 
 public class Request{
-    String verb;
-    String uri;
-    String httpVersion;
+    private String verb;
+    private String uri;
+    private String httpVersion;
     private Map<String, String> headers;
 
     String line;
@@ -30,7 +30,6 @@ public class Request{
     }
 
     public void parse() throws IOException{
-        System.out.println("Parsing " + line + "...");
         String[] tokenizeLine = line.split("\\s+");
 
         verb        = tokenizeLine[0];

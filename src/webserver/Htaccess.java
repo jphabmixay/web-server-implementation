@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Htaccess extends ConfigurationReader {
     private Htpassword userFile;
-    private String authType; // which is pretty much always Basic from what I remember during lecture
+    private String authType;
     private String authName;
     private String require;
 
@@ -18,7 +18,7 @@ public class Htaccess extends ConfigurationReader {
             String line = getLine();
             String[] tokenizeLine = line.split("\\s+");
 
-            if(tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) { //Ignores empty lines & lines starting with #
+            if(tokenizeLine.length > 0 && !tokenizeLine[0].contains("#")) {
                 for(int index = 1; index < tokenizeLine.length; index++) {
                     switch (tokenizeLine[0]) {
                         case "AuthUserFile":    try { userFile = new Htpassword(tokenizeLine[1]); }
