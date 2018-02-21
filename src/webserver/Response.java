@@ -1,5 +1,7 @@
 package webserver;
 
+import com.sun.xml.internal.ws.api.pipe.ContentType;
+
 import javax.xml.crypto.Data;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -42,6 +44,7 @@ public class Response {
         }
         output.writeBytes("\r\n");
         output.flush();
+        output.close();
     }
 
     public void doVerb(Request request) throws IOException{
@@ -52,7 +55,10 @@ public class Response {
                 break;
             case "GET":
                 code = 200;
-                //body = getBytes(file); //Not correctly displaying web page.
+                Path path = Paths.get(resource.absolutePath());
+                String str = "<html><head><title>" + path + "</title><head><body><p>";
+                str += "</p></body></html>";
+                body = str.getBytes();
                 addHeaders();
                 break;
             case "PUT":
@@ -82,12 +88,6 @@ public class Response {
         headers.add("Content-length: " + file.length());
         headers.add(getContentType(resource.absolutePath()));
 
-    }
-
-    public byte[] getBytes(File file) throws IOException{
-        Path path = Paths.get(resource.absolutePath());
-        byte[] bytes = Files.readAllBytes(path);
-        return bytes;
     }
 
     public String getContentType(String path) {

@@ -25,7 +25,7 @@ public class Request{
         parse();
 
         if (!checkVerb() || !checkVersion()){
-            verb = "BAD REQUEST";
+            this.verb = "BAD REQUEST";
         }
     }
 
