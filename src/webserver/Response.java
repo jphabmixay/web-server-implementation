@@ -54,12 +54,19 @@ public class Response {
                 addHeaders();
                 break;
             case "GET":
-                code = 200;
-                Path path = Paths.get(resource.absolutePath());
-                String str = "<html><head><title>" + path + "</title><head><body><p>";
-                str += "</p></body></html>";
-                body = str.getBytes();
-                addHeaders();
+                if(file.exists()){
+                    code = 200;
+                    Path path = Paths.get(resource.absolutePath());
+                    String str = "<html><head><title>" + path + "</title><head><body><p>";
+                    str += "</p></body></html>";
+                    body = str.getBytes();
+                    addHeaders();
+                }
+                else {
+                    code = 404;
+                    headers.add(responseCode(code));
+                }
+
                 break;
             case "PUT":
                 code = 201;
@@ -94,7 +101,11 @@ public class Response {
         String content = "Content Type: ";
         if (path.endsWith(".html")) {
             return content + "text/html";
-        } else {
+        }
+        else if (path.endsWith(".jpg")){
+            return content + "image/jpeg";
+        }
+        else {
             return content + "text/plain";
         }
     }
