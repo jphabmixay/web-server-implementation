@@ -13,7 +13,7 @@ import java.util.logging.*;
 
 public class WebServer
 {
-        private static final int DEFAULT_PORT = 8080;
+        private int port;
         private HttpdConf configuration = new HttpdConf("src/conf/httpd.conf");
         private MimeTypes mimeTypes = new MimeTypes("src/conf/mime.types");
         private Logger log = new Logger(configuration.getLogFile());
@@ -22,8 +22,9 @@ public class WebServer
         
         public void start() throws IOException
         {
-            socket = new ServerSocket(DEFAULT_PORT);
-            System.out.println("Java WebServer, Starting on port: " + DEFAULT_PORT);
+            port = configuration.getListen();
+            socket = new ServerSocket(port);
+            System.out.println("Java WebServer, Starting on port: " + port);
             while (true){
                 Socket client = socket.accept();
                 Request request     = new Request(client.getInputStream());

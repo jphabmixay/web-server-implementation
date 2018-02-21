@@ -7,7 +7,7 @@ public class HttpdConf extends ConfigurationReader{
 
     private String serverRoot;
     private String documentRoot;
-    private int listen;
+    private int listen = 8080;
     private String logFile;
     private String accessFileName = ".htaccess";  // default value is .htaccess
     private String directoryIndex = "index.html"; // default value i think is index.html

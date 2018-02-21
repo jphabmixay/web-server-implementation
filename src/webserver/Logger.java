@@ -32,7 +32,7 @@ public class Logger {
                     + request.getHttpVersion()
                     + "\" "
                     + response.code + " \n";
-        System.out.println(message);
+        System.out.print(message);
 
         appendMessage();
     }
